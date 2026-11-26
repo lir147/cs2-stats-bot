@@ -1,0 +1,15 @@
+# /etc/systemd/system/cs2-stats-bot.service  (вариант без Docker)
+[Unit]
+Description=CS2 Stats Telegram Bot
+After=network-online.target
+
+[Service]
+User=cs2bot
+WorkingDirectory=/opt/cs2-stats-bot
+EnvironmentFile=/opt/cs2-stats-bot/.env
+ExecStart=/opt/cs2-stats-bot/.venv/bin/python -m bot.main
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
